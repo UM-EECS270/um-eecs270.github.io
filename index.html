@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EECS 270: Introduction to Logic Design</title>
+<meta name="description" content="Introduction to digital logic design and computer organization. Topics include Boolean algebra, combinational and sequential logic design, finite state machines, computer arithmetic, assembly language programming, computer organization including processor design, memory systems, and I/O. Students gain hands-on experience with digital design tools and FPGA implementation.">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="assets/css/style.css">
+<script defer src="assets/js/site.js"></script>
+</head>
+<body>
+<header class="site-header">
+<div class="wrap topbar">
+<div class="brand">EECS 270</div>
+<nav class="topnav" aria-label="Main navigation">
+<a href="#schedule">Schedule</a>
+<a href="#assignments">Assignments</a>
+<a href="#people">People</a>
+<a href="#syllabus">Syllabus</a>
+
+</nav></div></header>
+<main class="wrap page-grid">
+<section class="hero">
+<div class="hero-topline">The University of Michigan</div>
+<h1>EECS 270: Introduction to Logic Design</h1>
+<p class="dek">Introduction to digital logic design and computer organization. Topics include Boolean algebra, combinational and sequential logic design, finite state machines, computer arithmetic, assembly language programming, computer organization including processor design, memory systems, and I/O. Students gain hands-on experience with digital design tools and FPGA implementation.</p>
+<div class="meta">
+<span><strong>Winter 2026</strong></span>
+<span>See calendar and schedule below</span>
+<span><a href="mailto:eecs270admin@umich.edu">eecs270admin@umich.edu</a></span>
+</div>
+<div class="utility-links">
+<a href="#recordings-admin" >Admin Requests</a>
+<a href="https://oh.eecs.umich.edu/courses/eecs270" target="_blank" rel="noopener noreferrer">Office Hours</a>
+<a href="https://piazza.com/umich/winter2026/eecs270wn2026/home" target="_blank" rel="noopener noreferrer">Q&A Forum</a>
+<a href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link" target="_blank" rel="noopener noreferrer">Files</a>
+<a href="https://autograder.io/web/course/375" target="_blank" rel="noopener noreferrer">Autograder</a>
+<a href="https://umich.instructure.com/courses/815882" target="_blank" rel="noopener noreferrer">Canvas</a>
+
+</div>
+<p class="hero-note">This starter is populated from the uploaded live site sources and split into maintainable YAML files for future terms.</p>
+</section>
+
+<aside class="toc panel">
+<h2>On this page</h2>
+<nav id="toc" aria-label="Table of contents"></nav>
+</aside>
+
+<section id="announcements" class="panel toc-section">
+<h2>Announcements</h2>
+<div class="stack">
+
+
+<article class="card">
+  <div class="note-head">
+    <h3><a href="https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator" target="_blank" rel="noopener noreferrer">Project 7 released! Checkpoint due April 10</a></h3>
+    
+  </div>
+  <p>Project 7 released! Checkpoint due April 10</p>
+</article>
+
+
+</div></section>
+
+<section id="recordings-admin" class="panel toc-section">
+<h2>Recordings and Administrative Requests</h2>
+<div class="two-col">
+<div><h3>Recordings</h3><ul class="link-list">
+<li><a href="https://leccap.engin.umich.edu/leccap/site/x9j74xcm6kbs2suikek" target="_blank" rel="noopener noreferrer">Lectures</a></li>
+<li><a href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=sharing" target="_blank" rel="noopener noreferrer">Lecture slides</a></li>
+<li><a href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=sharing" target="_blank" rel="noopener noreferrer">Lab slides</a></li>
+
+</ul></div>
+<div><h3>Administrative Requests</h3><ul class="request-list">
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLScH3Y1NivaqrrChaOD5ataltFejKfjmqz0hm9x0JDGYI1i-yw/viewform" target="_blank" rel="noopener noreferrer">Exam 1 Conflict</a><span>Report a conflict and request alternate scheduling for the first exam.</span></li>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfkVQ7GEjlCpK9zHwolTfjKEifQscgI9jUuiDtEprUJRKKgdQ/viewform" target="_blank" rel="noopener noreferrer">Exam 2 Conflict</a><span>Report a conflict and request alternate scheduling for the second exam.</span></li>
+
+</ul><p class="muted">If there is something not on these forms, contact <a href="mailto:eecs270admin@umich.edu">eecs270admin@umich.edu</a>.</p></div>
+</div>
+<p class="calendar-link"><a href="https://calendar.google.com/calendar/embed?src=c_7fd9d54382ebcdecf0b298997b09c744860106d6ac9a193115b5774601e1357c%40group.calendar.google.com&ctz=America%2FNew_York" target="_blank" rel="noopener noreferrer">Open in Google Calendar</a></p>
+</section>
+
+<section id="schedule" class="panel toc-section">
+<h2>Schedule</h2>
+<div class="table-wrap"><table class="schedule-table">
+<thead><tr><th>Day</th><th>Lecture Topic/Lab</th><th>Quiz</th><th>Lab</th><th>Project Deadlines</th></tr></thead>
+<tbody>
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 1</span><br>Jan 7</td>
+<td>Course Overview</td>
+<td>No Quiz</td>
+
+<td rowspan="1">No Lab</td>
+<td rowspan="1"><a href="https://umich.instructure.com/courses/815882/pages/project-0-majority-tutorial">Project 0</a></td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 2</span><br>Jan 12</td>
+<td>Switching Functions</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/478038">Quiz 1</a>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1U5iCvafSVvtIpQM_L3RDRRCBCNBQCuXqSUlMwOoNgD4/edit?usp=sharing">Lab 1</a></td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Jan 14</td>
+<td>Boolean Algebra</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473409">Quiz 2</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 3</span><br>Jan 19</td>
+<td>MLK Holiday</td>
+<td></td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1exhVL3DRKOoLgMMMjHsVLiwlrlG3t3IEp0bBe_2Segk/edit?usp=sharing">Lab 2</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-1-selector">Project 1 - Due Jan 20</a></td>
+
+</tr>
+
+<tr >
+<td>Jan 21</td>
+<td>Positive Binary Numbers</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473401">Quiz 3</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 4</span><br>Jan 26</td>
+<td>Binary Arithmetic I</td>
+<td></td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1vpOnaewWv_pOG7tc6LLjIs8iBGA2tg8ywltO0GDzX7o/edit?usp=sharing">Lab 3</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-2-robot-control">Project 2 - Due Jan 30</a></td>
+
+</tr>
+
+<tr >
+<td>Jan 28</td>
+<td>Binary Arithmetic II</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473408">Quiz 4</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 5</span><br>Feb 2</td>
+<td>Combinational Blocks</td>
+<td></td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1LzRBeulI5vhxurM_IpDCjy8iJ3HxVFoJ2IUh4yTzZSQ/edit?usp=sharing">Lab 4</a></td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Feb 4</td>
+<td>Combinational Blocks Continued</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473416">Quiz 5</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 6</span><br>Feb 9</td>
+<td>Two Level Logic Minimization</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473399">Quiz 6</a>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1PEhVLh-o2tBh0Q7KOEAmQ1RgEQXVQmHYBQA888IOJrs/edit?usp=sharing">Lab 5</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-3-combinational-calculator">Project 3 - Due Feb 11</a></td>
+
+</tr>
+
+<tr >
+<td>Feb 11</td>
+<td>Timing and Delay</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473412">Quiz 7</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 7</span><br>Feb 16</td>
+<td>Exam 1 - Review</td>
+<td>Exam 1 (6-8pm)</td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/14cgOqrwjHA8qcnczbn7NlLSsM4qoxlHUQDT3xpSSDyA/edit?usp=sharing">Lab 6</a></td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Feb 18</td>
+<td>Latches and Flip-Flops</td>
+<td><a href="https://umich.instructure.com/courses/815882/quizzes/473404">Quiz 8</a>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 8</span><br>Feb 23</td>
+<td>Sequential Circuits Analysis</td>
+<td>Quiz 9</td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1MCMiADPK8CTdHLE6L3jpt4HwTn4s1nvrj1TkQjCdz8M/edit?usp=sharing">Lab 7</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-4-timing-and-delay">Project 4 - Due Feb 25</a></td>
+
+</tr>
+
+<tr >
+<td>Feb 25</td>
+<td>Sequential Circuit Design</td>
+<td>Quiz 10</td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 9</span><br>Mar 2</td>
+<td>Spring Break</td>
+<td></td>
+
+<td rowspan="2">Spring Break</td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Mar 4</td>
+<td>Spring Break</td>
+<td></td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 10</span><br>Mar 9</td>
+<td>Sequential Design Examples</td>
+<td>Quiz 11</td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1vFPPKt0tJcL5nn9CH6MbQHlEyhreuXQEn05ef4hj-xc/edit?usp=sharing">Lab 8</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-5-up-down-counter">Project 5 - Due March 11</a></td>
+
+</tr>
+
+<tr >
+<td>Mar 11</td>
+<td>Sequential Building Blocks</td>
+<td>Quiz 12</td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 11</span><br>Mar 16</td>
+<td>Register Transfer Level (RTL) Design</td>
+<td></td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1-PmtshVIUwbO53_zrcDilOj0NWI2xuEUiJNb5PnTwp8/edit?usp=sharing">Lab 9</a></td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Mar 18</td>
+<td>Register Transfer Level (RTL) Design II</td>
+<td>Quiz 13</td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 12</span><br>Mar 23</td>
+<td>Sequential Timing Analysis</td>
+<td>Quiz 14</td>
+
+<td rowspan="2">No Labs</td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Mar 25</td>
+<td>Exam 2 - Review</td>
+<td>Exam 2 (6-8pm)</td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 13</span><br>Mar 30</td>
+<td>Sequential Multiplication</td>
+<td>Quiz 15</td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/1gDuTjf-9muEz0Po2I3u-bs2vq4g7dY-Uaa72vsGf5WA/edit?usp=sharing">Lab 10</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-6-traffic-light-controller">Project 6 - Due April 1</a></td>
+
+</tr>
+
+<tr >
+<td>Apr 1</td>
+<td>Project 7 Overview</td>
+<td></td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 14</span><br>Apr 6</td>
+<td>Algorithmic Two-Level Logic Minimization</td>
+<td></td>
+
+<td rowspan="2"><a href="https://docs.google.com/presentation/d/14ymikqY3zmGnWVHD94_UFKIKM0oUFIsDaX1fQYepcgc/edit?usp=sharing">Lab 11</a></td>
+<td rowspan="2"><a href="https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator">Project 7 checkpoint - Due April 10</a></td>
+
+</tr>
+
+<tr >
+<td>Apr 8</td>
+<td>Designing Fast Adders I</td>
+<td></td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 15</span><br>Apr 13</td>
+<td>Designing Fast Adders II</td>
+<td>Quiz 16</td>
+
+<td rowspan="2">Lab 12</td>
+<td rowspan="2"></td>
+
+</tr>
+
+<tr >
+<td>Apr 15</td>
+<td>State Assignment and Minimization</td>
+<td>Quiz 17</td>
+
+</tr>
+
+
+
+
+<tr class="week-start">
+<td><span class="week-badge">Week 16</span><br>Apr 20</td>
+<td>No Class</td>
+<td></td>
+
+<td rowspan="1">No Labs</td>
+<td rowspan="1"><a href="https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator">Project 7 - Due April 20</a></td>
+
+</tr>
+
+
+<tr class="week-start"><td colspan="5"><strong>Final Exam:</strong> April 27, 2026, 4:00 PM - 6:00 PM</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="assignments" class="panel toc-section">
+<h2>Assignments</h2>
+<div class="cards-3">
+
+<article class="card assignment-card">
+<div class="assignment-icon">📘</div>
+<h3>Project 0</h3>
+<p>Getting Started</p>
+<p><strong>Due:</strong> January 11 - Do not submit</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-0-majority-tutorial">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🔬</div>
+<h3>Project 1</h3>
+<p>Selector</p>
+<p><strong>Due:</strong> January 20, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-1-selector">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🖥️</div>
+<h3>Project 2</h3>
+<p>Robot Control</p>
+<p><strong>Due:</strong> January 30, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-2-robot-control">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🧮</div>
+<h3>Project 3</h3>
+<p>Combinational Calculator</p>
+<p><strong>Due:</strong> February 11, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-3-combinational-calculator">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">⏱️</div>
+<h3>Project 4</h3>
+<p>Timing and Delay</p>
+<p><strong>Due:</strong> February 25, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-4-timing-and-delay">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🔢</div>
+<h3>Project 5</h3>
+<p>Up-Down Counter</p>
+<p><strong>Due:</strong> March 11, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-5-up-down-counter">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🚦</div>
+<h3>Project 6</h3>
+<p>Traffic Light Controller</p>
+<p><strong>Due:</strong> April 1, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-6-traffic-light-controller">Project Spec</a></p>
+</article>
+
+<article class="card assignment-card">
+<div class="assignment-icon">🧮</div>
+<h3>Project 7</h3>
+<p>Sequential Calculator</p>
+<p><strong>Due:</strong> April 20, 2026</p>
+<p><a href="https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator">Project Spec</a></p>
+</article>
+
+</div>
+</section>
+
+<section id="people" class="panel toc-section">
+<h2>People</h2>
+<div class="people-grid-full">
+<div>
+<h3>Faculty</h3>
+<div class="cards-2">
+
+<article class="card person-card">
+<div class="person-top">
+<div class="avatar-wrap">
+<img class="avatar" src="assets/headshots/razak.jpg" alt="Saquib Razak" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback" style="display:none">SR</div>
+</div>
+<div>
+<h4>Saquib Razak</h4>
+<p class="muted">Instructor</p>
+<p><a href="mailto:razak@umich.edu">razak@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, Vim, VS Code</p>
+<p class="small"><strong>Interests:</strong> tennis, man_running, coffee, doughnut</p>
+</article>
+
+</div>
+</div>
+<div>
+<h3>Staff</h3>
+<div class="cards-3">
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/james.png" alt="James Carl" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">JC</div>
+</div>
+<div>
+<h4>James Carl</h4>
+<p><a href="mailto:jmscarl@umich.edu">jmscarl@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux</p>
+<p class="small"><strong>Interests:</strong> checkered_flag, sail_boat, skier</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/capitani.jpg" alt="Michael Capitani" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">MC</div>
+</div>
+<div>
+<h4>Michael Capitani</h4>
+<p><a href="mailto:mcap@umich.edu">mcap@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Mac, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> bento, golf, hockey</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/dhruv.jpeg" alt="Dhruv Dighrasker" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">DD</div>
+</div>
+<div>
+<h4>Dhruv Dighrasker</h4>
+<p><a href="mailto:dhruvdi@umich.edu">dhruvdi@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Mac, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> man_running, movie_camera, ping_pong</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/flom.png" alt="Jacob Flom" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">JF</div>
+</div>
+<div>
+<h4>Jacob Flom</h4>
+<p><a href="mailto:jsflom@umich.edu">jsflom@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Mac, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> croissant, black_nib, airplane</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/owen.png" alt="Owen Hoffend" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">OH</div>
+</div>
+<div>
+<h4>Owen Hoffend</h4>
+<p><a href="mailto:ohoffend@umich.edu">ohoffend@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Mac, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> books, man_dancing, cook</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/luke.jpg" alt="Luke Nelson" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">LN</div>
+</div>
+<div>
+<h4>Luke Nelson</h4>
+<p><a href="mailto:lukenels@umich.edu">lukenels@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Mac, Windows, Linux, Vim</p>
+<p class="small"><strong>Interests:</strong> basketball, cactus, book</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/tanay.jpg" alt="Tanay Sharma" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">TS</div>
+</div>
+<div>
+<h4>Tanay Sharma</h4>
+<p><a href="mailto:tanays@umich.edu">tanays@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> ping_pong, cooking, guitar</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/jacob.jpg" alt="Jacob Tkaczyk" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">JT</div>
+</div>
+<div>
+<h4>Jacob Tkaczyk</h4>
+<p><a href="mailto:tkaczykj@umich.edu">tkaczykj@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> man_lifting_weights, poultry_leg, airplane</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/anthony.png" alt="Anthony Varkey" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">AV</div>
+</div>
+<div>
+<h4>Anthony Varkey</h4>
+<p><a href="mailto:avarkey@umich.edu">avarkey@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> video_game, badminton, ping_pong</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/jeffery.png" alt="Jeffery Wu" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">JW</div>
+</div>
+<div>
+<h4>Jeffery Wu</h4>
+<p><a href="mailto:wujeffer@umich.edu">wujeffer@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> basketball, video_camera, cat2, dumpling, guitar</p>
+</article>
+
+<article class="card person-card">
+<div class="person-top compact">
+<div class="avatar-wrap small-avatar-wrap">
+<img class="avatar small-avatar" src="assets/headshots/fa.jpg" alt="Fa Yan" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+<div class="avatar-fallback small-avatar-fallback" style="display:none">FY</div>
+</div>
+<div>
+<h4>Fa Yan</h4>
+<p><a href="mailto:fahyen@umich.edu">fahyen@umich.edu</a></p>
+</div>
+</div>
+<p class="small"><strong>Platforms:</strong> Windows, Linux, VS Code</p>
+<p class="small"><strong>Interests:</strong> computer, chains, chart_with_upwards_trend</p>
+</article>
+
+</div>
+</div>
+</div>
+</section>
+
+<section id="syllabus" class="panel toc-section">
+<h2>Syllabus</h2>
+<div class="syllabus-intro prose"><p>EECS 270 introduces you to the exciting world of digital logic design. Digital devices have proliferated in the last quarter century and have become essential in just about anything we do or depend on in a modern society. Computers of all varieties are now at the heart of commerce, communications, education, health care, entertainment, defense, etc. Personal computers have become standard fixtures in most homes and schools. But while the computer is the most visible digital computing device, it is by no means the only one. Embedded digital controllers can be found in such diverse applications as automobiles, airplanes, elevators, cellphones, televisions, cameras, and many kitchen appliances, to name just a tiny few.</p>
+<p>This course provides you with a basic understanding of what digital devices are, how they operate, and how they can be designed to perform useful functions. It forms the foundation for the more advanced hardware courses in our CS, CE, and EE curricula, notably EECS 373, 427, and 470. You will learn about digital design through a combination of lectures, labs, and projects. Through the projects, you will learn to apply the concepts learned in lecture to design real digital circuits using modern design tools and FPGAs.</p>
+</div>
+<div class="accordion-stack">
+
+<details class="accordion" open>
+<summary id="attendance-policy">Attendance Policy</summary>
+<div class="accordion-body prose">
+<p>In-person attendance is <strong>required</strong>. Lectures will be automatically recorded but should not be used as a substitute for lecture attendance.  Lectures cannot be attended remotely via Zoom. <strong>Lab sessions require attendance, and labs are graded</strong>. Please ensure that you attend the section for which you are registered.</p>
+
+
+
+
+
+
+
+</div>
+</details>
+
+<details class="accordion" open>
+<summary id="course-topics">Course Topics</summary>
+<div class="accordion-body prose">
+
+<ul><li>Bits Everywhere!</li><li>Timing and Delay</li><li>Boolean Algebra</li><li>Switching Functions</li><li>Positive Binary Numbers</li><li>Binary Arithmetic</li><li>Combinational Blocks</li><li>Latches and Flip-Flops</li><li>Sequential Circuit Analysis</li><li>Sequential Circuit Design</li><li>Two Level Logic Minimization</li><li>Sequential Building Blocks</li><li>Register Transfer Level (RTL) Design</li><li>Sequential Timing Analysis</li><li>Sequential Multiplication</li><li>Algorithmic Two-Level Logic Minimization</li><li>Designing Fast Adders</li><li>State Assignment and Minimization</li></ul>
+
+
+
+
+
+</div>
+</details>
+
+<details class="accordion" >
+<summary id="projects">Projects</summary>
+<div class="accordion-body prose">
+<p>You will complete <strong>seven projects</strong> through the semester. In these projects, you will design and implement various digital circuits for deployment on the DE2-115 FPGA development board.</p>
+<p>The projects increase in complexity as the semester progresses. The first four projects focus on combinational logic design, while the last three projects focus on sequential logic design. You will use Verilog as the hardware description language (HDL) for all projects.</p>
+<p>For further details on the projects, please refer to the <a href="https://umich.instructure.com/courses/815882/pages/projects-overview">Projects Overview</a> page.</p>
+
+
+
+
+
+
+
+</div>
+</details>
+
+<details class="accordion" >
+<summary id="optional-textbooks">Optional Textbooks</summary>
+<div class="accordion-body prose">
+
+<ul><li>F. Vahid, Digital Design with RTL Design, VHDL, and Verilog, 2nd ed., Wiley.</li><li>J. F. Wakerly, Digital Design: Principles and Practices, 4th ed., Prentice-Hall.</li><li>J. P. Hayes, Introduction to Digital Logic Design, Addison-Wesley.</li><li>C. H. Roth, Jr., Fundamentals of Logic Design.</li><li>R. H. Katz, Contemporary Logic Design, Prentice-Hall.</li><li>D. Thomas, P. Moorby, The Verilog Hardware Description Language.</li></ul>
+
+
+
+
+
+</div>
+</details>
+
+<details class="accordion" >
+<summary id="grading">Grading</summary>
+<div class="accordion-body prose">
+<p>Your final grade will be determined based on the following components:
+The 5 lowest quizzes will be dropped from your final grade calculation. The 2 lowest lab grades will also be dropped.</p>
+
+
+<div class="table-wrap compact-table"><table><thead><tr><th>Component</th><th>Weight</th></tr></thead><tbody><tr><td>Quizzes</td><td>5%</td></tr><tr><td>Labs</td><td>5%</td></tr><tr><td>Projects</td><td>30%</td></tr><tr><td>Midterm 1</td><td>20%</td></tr><tr><td>Midterm 2</td><td>20%</td></tr><tr><td>Final Exam</td><td>20%</td></tr></tbody></table></div>
+<p>Your final letter grade will be determined based on your overall percentage in the course, according to the following scale:</p>
+
+<div class="table-wrap compact-table"><table><thead><tr><th>Percentage</th><th>Letter Grade</th></tr></thead><tbody><tr><td>100% - 95%</td><td>A+</td></tr><tr><td>95% - 85%</td><td>A</td></tr><tr><td>85% - 81%</td><td>A-</td></tr><tr><td>81% - 78%</td><td>B+</td></tr><tr><td>78% - 75%</td><td>B</td></tr><tr><td>75% - 71%</td><td>B-</td></tr><tr><td>71% - 68%</td><td>C+</td></tr><tr><td>68% - 65%</td><td>C</td></tr><tr><td>65% - 60%</td><td>C-</td></tr><tr><td>60% - 57%</td><td>D+</td></tr><tr><td>57% - 54%</td><td>D</td></tr><tr><td>54% - 50%</td><td>D-</td></tr><tr><td>Below 50%</td><td>E</td></tr></tbody></table></div>
+
+
+</div>
+</details>
+
+<details class="accordion" >
+<summary id="academic-integrity">Academic Integrity</summary>
+<div class="accordion-body prose">
+<p>We encourage collaboration in EECS 270, especially on concepts, tools, specifications, and strategies. However, all submitted work must be your own.
+If you are unsure about what constitutes collaboration versus copying, please ask a member of the teaching staff for clarification.</p>
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Encouraged Collaboration</th><th>Unacceptable Collaboration</th></tr></thead><tbody><tr><td>Sharing high-level design strategies, e.g., module organization</td><td>Walking through a design or module step-by-step, sharing pseudocode, sharing comments</td></tr><tr><td>Helping others understand the spec or project nuances</td><td>Providing your code as a reference</td></tr><tr><td>Helping someone debug</td><td>Debugging someone's code for them</td></tr><tr><td>Explaining a synthesis error to someone</td><td>Fixing a synthesis error for someone</td></tr><tr><td>Discussing test strategies</td><td>Sharing test code to verify someone else's design, even if test cases are not submitted</td></tr><tr><td>Brainstorming edge cases for testing</td><td>Discussing specifics about what tests exposed instructor bugs on the autograder</td></tr><tr><td>Using starter code provided with a project or based on examples shown in lecture</td><td>Copying code in whole or in part, even if the code is modified \n Writing original code for someone else, or paying someone to write your project</td></tr><tr><td></td><td>Sharing your code in a way that could be copied, e.g., sending code over email or taking a picture of code</td></tr></tbody></table></div>
+<h4>Code Reuse</h4><p>Reusing code (your own or other students') from previous semesters is not permitted.</p>
+<h4>Publishing Code</h4><p>Any code you write for this course must not be published in any way or form, including posting on public repositories (e.g., GitHub, GitLab) or personal websites.</p>
+<h4>Generative AI Policy</h4><p>The use of generative AI tools is not permitted for writing code or completing assignments in this course.</p>
+
+</div>
+</details>
+
+</div>
+</section>
+</main>
+</body>
+</html>

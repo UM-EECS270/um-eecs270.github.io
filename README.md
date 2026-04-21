@@ -1,34 +1,63 @@
-# EECS 270 GitHub Pages Starter
+# EECS 270 semester-editable starter
 
-This starter is a plain Jekyll site for a **single-page EECS 270 course website** hosted on GitHub Pages.
+This version is meant for the workflow you asked for:
 
-It is now populated from the uploaded source files:
-- `config.json` for course metadata, links, announcements, assignments, quiz URLs, lab URLs, final exam info, and the live week-by-week schedule
-- `people.json` for faculty and staff cards
-- `syllabus.md` for the syllabus source of truth
-- `index.html` for section order and the live page structure
+1. edit semester content in `_data/*.yml`
+2. run one command to regenerate `index.html`
+3. preview locally with any static server or by opening `index.html`
 
-## What is split into YAML
-- `_data/course.yml`
-- `_data/navigation.yml`
-- `_data/announcements.yml`
-- `_data/resources.yml`
-- `_data/schedule.yml`
-- `_data/assignments.yml`
-- `_data/people.yml`
-- `_data/syllabus.yml`
+## Files you will usually edit
 
-## Source snapshots kept in the repo
-- `config.source.json`
-- `people.source.json`
-- `index.source.html`
-- `syllabus.source.md`
+- `_data/course.yml` — term, description, contact, meeting info
+- `_data/navigation.yml` — top links and utility links
+- `_data/announcements.yml` — announcements
+- `_data/assignments.yml` — project cards and due dates
+- `_data/people.yml` — instructor and staff
+- `_data/resources.yml` — Canvas, Piazza, Office Hours, calendar, recordings, request forms
+- `_data/schedule.yml` — week-by-week schedule and final exam
+- `_data/syllabus.yml` — syllabus sections and policies
 
-## Run locally
+## Regenerate the page
+
+From the site root, run:
+
 ```bash
-bundle install
-bundle exec jekyll serve
+./build.sh
 ```
 
-## Publish on GitHub Pages
-Push this folder to a GitHub repository and enable **GitHub Pages** from the repository root.
+or:
+
+```bash
+python3 generate_site.py
+```
+
+That rewrites `index.html` from the YAML files.
+
+## Preview locally
+
+Any of these work:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+You can also open `index.html` directly in a browser.
+
+## GitHub Pages
+
+This package is already static, so you can upload it directly to GitHub Pages.
+No Jekyll build is required for the generated `index.html`.
+
+## Semester rollover checklist
+
+- update `_data/course.yml`
+- replace URLs in `_data/navigation.yml` and `_data/resources.yml`
+- update announcements in `_data/announcements.yml`
+- update projects in `_data/assignments.yml`
+- update staff in `_data/people.yml`
+- update lecture/lab/quiz/project dates in `_data/schedule.yml`
+- update policies in `_data/syllabus.yml` if needed
+- run `./build.sh`
+- commit the regenerated `index.html`
