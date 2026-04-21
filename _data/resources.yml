@@ -1,0 +1,23 @@
+recordings:
+  heading: Recordings
+  items:
+  - label: Lectures
+    url: https://leccap.engin.umich.edu/leccap/site/x9j74xcm6kbs2suikek
+  - label: Lecture slides
+    url: https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=sharing
+  - label: Lab slides
+    url: https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=sharing
+admin_requests:
+  heading: Administrative Requests
+  items:
+  - title: Exam 1 Conflict
+    url: https://docs.google.com/forms/d/e/1FAIpQLScH3Y1NivaqrrChaOD5ataltFejKfjmqz0hm9x0JDGYI1i-yw/viewform
+    description: Report a conflict and request alternate scheduling for the first
+      exam.
+  - title: Exam 2 Conflict
+    url: https://docs.google.com/forms/d/e/1FAIpQLSfkVQ7GEjlCpK9zHwolTfjKEifQscgI9jUuiDtEprUJRKKgdQ/viewform
+    description: Report a conflict and request alternate scheduling for the second
+      exam.
+calendar:
+  label: Open in Google Calendar
+  url: https://calendar.google.com/calendar/embed?src=c_7fd9d54382ebcdecf0b298997b09c744860106d6ac9a193115b5774601e1357c%40group.calendar.google.com&ctz=America%2FNew_York

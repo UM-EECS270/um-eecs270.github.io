@@ -1,0 +1,27 @@
+primary:
+- label: Schedule
+  url: '#schedule'
+- label: Assignments
+  url: '#assignments'
+- label: People
+  url: '#people'
+- label: Syllabus
+  url: '#syllabus'
+secondary:
+- label: Admin Requests
+  url: '#recordings-admin'
+- label: Office Hours
+  url: https://oh.eecs.umich.edu/courses/eecs270
+  external: true
+- label: Q&A Forum
+  url: https://piazza.com/umich/winter2026/eecs270wn2026/home
+  external: true
+- label: Files
+  url: https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link
+  external: true
+- label: Autograder
+  url: https://autograder.io/web/course/375
+  external: true
+- label: Canvas
+  url: https://umich.instructure.com/courses/815882
+  external: true

@@ -1,0 +1,282 @@
+final_exam:
+  date: April 27, 2026
+  time: 4:00 PM - 6:00 PM
+weeks:
+- week: 1
+  lab: No Lab
+  lab_url: ''
+  projects:
+  - title: Project 0
+    project_url: https://umich.instructure.com/courses/815882/pages/project-0-majority-tutorial
+  entries:
+  - date: '2026-01-07'
+    lecture: Course Overview
+    lecture_url: ''
+    quiz: No Quiz
+    quiz_url: ''
+    notes: ''
+- week: 2
+  lab: Lab 1
+  lab_url: https://docs.google.com/presentation/d/1U5iCvafSVvtIpQM_L3RDRRCBCNBQCuXqSUlMwOoNgD4/edit?usp=sharing
+  projects: []
+  entries:
+  - date: '2026-01-12'
+    lecture: Switching Functions
+    lecture_url: ''
+    quiz: Quiz 1
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/478038
+    notes: ''
+  - date: '2026-01-14'
+    lecture: Boolean Algebra
+    lecture_url: ''
+    quiz: Quiz 2
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473409
+    notes: ''
+- week: 3
+  lab: Lab 2
+  lab_url: https://docs.google.com/presentation/d/1exhVL3DRKOoLgMMMjHsVLiwlrlG3t3IEp0bBe_2Segk/edit?usp=sharing
+  projects:
+  - title: Project 1 - Due Jan 20
+    project_url: https://umich.instructure.com/courses/815882/pages/project-1-selector
+  entries:
+  - date: '2026-01-19'
+    lecture: MLK Holiday
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-01-21'
+    lecture: Positive Binary Numbers
+    lecture_url: ''
+    quiz: Quiz 3
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473401
+    notes: ''
+- week: 4
+  lab: Lab 3
+  lab_url: https://docs.google.com/presentation/d/1vpOnaewWv_pOG7tc6LLjIs8iBGA2tg8ywltO0GDzX7o/edit?usp=sharing
+  projects:
+  - title: Project 2 - Due Jan 30
+    project_url: https://umich.instructure.com/courses/815882/pages/project-2-robot-control
+  entries:
+  - date: '2026-01-26'
+    lecture: Binary Arithmetic I
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-01-28'
+    lecture: Binary Arithmetic II
+    lecture_url: ''
+    quiz: Quiz 4
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473408
+    notes: ''
+- week: 5
+  lab: Lab 4
+  lab_url: https://docs.google.com/presentation/d/1LzRBeulI5vhxurM_IpDCjy8iJ3HxVFoJ2IUh4yTzZSQ/edit?usp=sharing
+  projects: []
+  entries:
+  - date: '2026-02-02'
+    lecture: Combinational Blocks
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-02-04'
+    lecture: Combinational Blocks Continued
+    lecture_url: ''
+    quiz: Quiz 5
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473416
+    notes: ''
+- week: 6
+  lab: Lab 5
+  lab_url: https://docs.google.com/presentation/d/1PEhVLh-o2tBh0Q7KOEAmQ1RgEQXVQmHYBQA888IOJrs/edit?usp=sharing
+  projects:
+  - title: Project 3 - Due Feb 11
+    project_url: https://umich.instructure.com/courses/815882/pages/project-3-combinational-calculator
+  entries:
+  - date: '2026-02-09'
+    lecture: Two Level Logic Minimization
+    lecture_url: ''
+    quiz: Quiz 6
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473399
+    notes: ''
+  - date: '2026-02-11'
+    lecture: Timing and Delay
+    lecture_url: ''
+    quiz: Quiz 7
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473412
+    notes: ''
+- week: 7
+  lab: Lab 6
+  lab_url: https://docs.google.com/presentation/d/14cgOqrwjHA8qcnczbn7NlLSsM4qoxlHUQDT3xpSSDyA/edit?usp=sharing
+  projects: []
+  entries:
+  - date: '2026-02-16'
+    lecture: Exam 1 - Review
+    lecture_url: ''
+    quiz: Exam 1 (6-8pm)
+    quiz_url: ''
+    notes: ''
+  - date: '2026-02-18'
+    lecture: Latches and Flip-Flops
+    lecture_url: ''
+    quiz: Quiz 8
+    quiz_url: https://umich.instructure.com/courses/815882/quizzes/473404
+    notes: ''
+- week: 8
+  lab: Lab 7
+  lab_url: https://docs.google.com/presentation/d/1MCMiADPK8CTdHLE6L3jpt4HwTn4s1nvrj1TkQjCdz8M/edit?usp=sharing
+  projects:
+  - title: Project 4 - Due Feb 25
+    project_url: https://umich.instructure.com/courses/815882/pages/project-4-timing-and-delay
+  entries:
+  - date: '2026-02-23'
+    lecture: Sequential Circuits Analysis
+    lecture_url: ''
+    quiz: Quiz 9
+    quiz_url: ''
+    notes: ''
+  - date: '2026-02-25'
+    lecture: Sequential Circuit Design
+    lecture_url: ''
+    quiz: Quiz 10
+    quiz_url: ''
+    notes: ''
+- week: 9
+  lab: Spring Break
+  lab_url: ''
+  projects: []
+  entries:
+  - date: '2026-03-02'
+    lecture: Spring Break
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-03-04'
+    lecture: Spring Break
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+- week: 10
+  lab: Lab 8
+  lab_url: https://docs.google.com/presentation/d/1vFPPKt0tJcL5nn9CH6MbQHlEyhreuXQEn05ef4hj-xc/edit?usp=sharing
+  projects:
+  - title: Project 5 - Due March 11
+    project_url: https://umich.instructure.com/courses/815882/pages/project-5-up-down-counter
+  entries:
+  - date: '2026-03-09'
+    lecture: Sequential Design Examples
+    lecture_url: ''
+    quiz: Quiz 11
+    quiz_url: ''
+    notes: ''
+  - date: '2026-03-11'
+    lecture: Sequential Building Blocks
+    lecture_url: ''
+    quiz: Quiz 12
+    quiz_url: ''
+    notes: ''
+- week: 11
+  lab: Lab 9
+  lab_url: https://docs.google.com/presentation/d/1-PmtshVIUwbO53_zrcDilOj0NWI2xuEUiJNb5PnTwp8/edit?usp=sharing
+  projects: []
+  entries:
+  - date: '2026-03-16'
+    lecture: Register Transfer Level (RTL) Design
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-03-18'
+    lecture: Register Transfer Level (RTL) Design II
+    lecture_url: ''
+    quiz: Quiz 13
+    quiz_url: ''
+    notes: ''
+- week: 12
+  lab: No Labs
+  lab_url: ''
+  projects: []
+  entries:
+  - date: '2026-03-23'
+    lecture: Sequential Timing Analysis
+    lecture_url: ''
+    quiz: Quiz 14
+    quiz_url: ''
+    notes: ''
+  - date: '2026-03-25'
+    lecture: Exam 2 - Review
+    lecture_url: ''
+    quiz: Exam 2 (6-8pm)
+    quiz_url: ''
+    notes: ''
+- week: 13
+  lab: Lab 10
+  lab_url: https://docs.google.com/presentation/d/1gDuTjf-9muEz0Po2I3u-bs2vq4g7dY-Uaa72vsGf5WA/edit?usp=sharing
+  projects:
+  - title: Project 6 - Due April 1
+    project_url: https://umich.instructure.com/courses/815882/pages/project-6-traffic-light-controller
+  entries:
+  - date: '2026-03-30'
+    lecture: Sequential Multiplication
+    lecture_url: ''
+    quiz: Quiz 15
+    quiz_url: ''
+    notes: ''
+  - date: '2026-04-01'
+    lecture: Project 7 Overview
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+- week: 14
+  lab: Lab 11
+  lab_url: https://docs.google.com/presentation/d/14ymikqY3zmGnWVHD94_UFKIKM0oUFIsDaX1fQYepcgc/edit?usp=sharing
+  projects:
+  - title: Project 7 checkpoint - Due April 10
+    project_url: https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator
+  entries:
+  - date: '2026-04-06'
+    lecture: Algorithmic Two-Level Logic Minimization
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+  - date: '2026-04-08'
+    lecture: Designing Fast Adders I
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''
+- week: 15
+  lab: Lab 12
+  lab_url: ''
+  projects: []
+  entries:
+  - date: '2026-04-13'
+    lecture: Designing Fast Adders II
+    lecture_url: ''
+    quiz: Quiz 16
+    quiz_url: ''
+    notes: ''
+  - date: '2026-04-15'
+    lecture: State Assignment and Minimization
+    lecture_url: ''
+    quiz: Quiz 17
+    quiz_url: ''
+    notes: ''
+- week: 16
+  lab: No Labs
+  lab_url: ''
+  projects:
+  - title: Project 7 - Due April 20
+    project_url: https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator
+  entries:
+  - date: '2026-04-20'
+    lecture: No Class
+    lecture_url: ''
+    quiz: ''
+    quiz_url: ''
+    notes: ''

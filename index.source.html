@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EECS 270" />
+  <meta name="keywords" content="EECS270, EECS 270, Introduction to Logic Design" />
+  <title>EECS 270</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/eecs270favicon.ico">
+
+  <!-- Fomantic UI CSS library
+       https://fomantic-ui.com/introduction/getting-started.html#using-a-cdn-provider -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.1-beta.38/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.1-beta.38/dist/semantic.min.js"></script>
+
+  <!-- FullCalendar JS library
+       https://fullcalendar.io/docs
+       https://fullcalendar.io/docs/google-calendar  -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+  <!-- Custom fonts used for custom icons like Emacs, Gradescope, etc. -->
+  <link href='assets/css/customfontpack.css' rel='stylesheet' />
+  <link href='assets/css/eecs270.css' rel='stylesheet' />
+
+  <!-- Load configuration -->
+  <script>
+    let config = null;
+    let people = null;
+    
+    // Load config.json and people.json
+    Promise.all([
+      fetch(`config.json?v=${Date.now()}`).then(response => {
+        console.log('Config fetch response:', response);
+        if (!response.ok) throw new Error('Config fetch failed');
+        return response.json();
+      }),
+      fetch(`people.json?v=${Date.now()}`).then(response => {
+        console.log('People fetch response:', response);
+        if (!response.ok) throw new Error('People fetch failed');
+        return response.json();
+      })
+    ])
+    .then(([configData, peopleData]) => {
+      console.log('Config loaded:', configData);
+      console.log('People loaded:', peopleData);
+      config = configData;
+      people = peopleData;
+      document.getElementById('semester-label').textContent = config.course.semester;
+      updateConfigurableContent();
+      generatePeopleSection();
+
+    })
+    .catch(error => {
+      console.error('Error loading configuration:', error);
+      console.log('Falling back to static content...');
+    });
+
+    function updateConfigurableContent() {
+      if (!config) return;
+
+      // Update all links with data-config attributes
+      document.querySelectorAll('[data-config]').forEach(element => {
+        const configKey = element.getAttribute('data-config');
+        if (config.links[configKey]) {
+          element.href = config.links[configKey];
+        }
+      });
+
+      // Update calendar link
+      const calendarLink = document.querySelector('a[href*="calendar.google.com"]');
+      if (calendarLink) calendarLink.href = config.calendar.googleCalendarUrl;
+
+      // Update assignment/project links
+      if (config.assignments && config.assignments.length > 0) {
+        const assignmentLink = document.querySelector('a[href*="github.com/eecs270staff"]');
+        if (assignmentLink) {
+          assignmentLink.href = config.assignments[0].url;
+          assignmentLink.textContent = config.assignments[0].name;
+        }
+      }
+
+      // Update announcements
+      generateAnnouncements();
+      
+      // Generate projects section
+      generateProjectsSection();
+      // Render schedule
+      if (config.schedule) {
+        renderSchedule(config.schedule);
+      }
+      
+    }
+
+function renderSchedule(schedule){
+  
+  
+  const container = document.getElementById("schedule_new");
+
+container.innerHTML = `
+  <table id="schedule-table_new"
+         class="ui unstackable celled table"
+         style="border-collapse: collapse; font-size:90%;">
+    <thead>
+      <tr>
+        <th style="width: 15%;">Day</th>
+        <th style="width: 40%;">Lecture Topic/Lab</th>
+        <th style="width: 14%;">Quiz</th>
+        <th style="width: 12%;">Lab</th>
+        <th style="width: 19%;">Project Deadlines</th>
+      </tr>
+    </thead>
+    <tbody id="schedule-body">
+      <!-- JS inserts rows here -->
+    </tbody>
+  </table>
+`;
+  const tbody = document.getElementById("schedule-body");    
+  schedule.forEach(week => {
+    const entries = week.entries || [];
+    const hasTwoDays = entries.length > 1;
+
+    
+    
+    
+    
+      
+
+    // Day 1
+    if (entries[0]) {
+      // Week header
+      const td = renderWeekHeaderRow(week.week);
+      const tr = document.createElement("tr");
+      tr.style.borderTop = "2px solid #555";
+      const label = document.createElement("span");
+      label.className = "schedule-day";
+      const lec = entries[0];
+      label.textContent = lec.date? new Date(lec.date + "T00:00:00").toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric"
+          })  : "";
+      td.appendChild(label);
+      tr.appendChild(td);
+      renderEntryRow(entries[0],tr, {
+          lab: week.lab,
+          projects: week.projects,
+          project_url: week.project_url,
+          rowspan: hasTwoDays ? 2 : 1
+        });
+        tbody.appendChild(tr);
+    }
+    
+    // Day 2
+    if (entries[1]) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      lec = entries[1];
+      const label = document.createElement("span");
+      label.className = "schedule-day";
+      label.textContent = lec.date? new Date(lec.date + "T00:00:00").toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric"
+      })
+        : "";
+      td.appendChild(label);
+      tr.appendChild(td);
+      renderEntryRow(entries[1],tr);
+      tbody.appendChild(tr);
+    }
+  });
+ const tr1 = document.createElement("tr");
+ tr1.style.borderTop = "2px solid #555";
+ const td1 = document.createElement("td");
+ td1.colSpan = 5;
+ const label1 = document.createElement("span");
+ //label1.className = "schedule-day";
+ label1.textContent = `Final Exam: ${config.finalExam.date}, ${config.finalExam.time}`;
+ td1.appendChild(label1);
+ tr1.appendChild(td1);
+ tbody.appendChild(tr1);
+}
+
+
+
+function renderEntryRow(lec, tr,options = {}) {
+  
+
+  // Lecture / Topic
+  const topicTd = document.createElement("td");
+  if (lec.Lecture_url) {
+    const a = document.createElement("a");
+    a.href = lec.Lecture_url;
+    a.textContent = lec.Lecture;
+    topicTd.appendChild(a);
+  } else {
+    topicTd.textContent = lec.Lecture || "";
+  }
+  tr.appendChild(topicTd);
+
+  // Quiz
+  const quizTd = document.createElement("td");
+  //console.log('Does lecture quiz url exist', lec.quiz, lec.quiz in config.quizurls,lec.quiz && (config.quizurls?.[lec.quiz]));
+  if (lec.quiz && (lec.quiz in config.quizurls)) {
+    const a = document.createElement("a");
+    a.href = config.quizurls[lec.quiz];
+    a.textContent = lec.quiz || "";
+    quizTd.appendChild(a);
+  } else {
+    quizTd.textContent = lec.quiz || "";
+  }
+  tr.appendChild(quizTd);
+
+  // Lab (rowspan-safe)
+  if (options.lab) {
+    const labTd = document.createElement("td");
+    if (options.lab && (options.lab in config.laburls)) {
+      const a = document.createElement("a");
+      a.href = config.laburls[options.lab];
+      a.textContent = options.lab;
+      labTd.appendChild(a);
+    } else {
+      labTd.textContent = options.lab || "";
+    }
+    if (options.rowspan) labTd.rowSpan = options.rowspan;
+    tr.appendChild(labTd);
+  }
+
+  // Project (rowspan-safe)
+  const projTd = document.createElement("td");
+  if (options.projects) {
+      options.projects.forEach((project,index) => {
+      const a = document.createElement("a");
+      a.href = project.project_url;
+      a.textContent = project.title ;
+      projTd.appendChild(a);  
+      if (index < options.projects.length - 1) {
+        projTd.appendChild(document.createElement("br"));
+  }
+    }
+      
+      
+    )
+    
+    projTd.rowSpan = options.rowspan;
+    tr.appendChild(projTd);
+  }
+
+  return tr;
+}
+
+function renderWeekHeaderRow(weekNum, colCount = 5) {
+  //tr.style.borderTop = "2px solid #555";
+
+  const td = document.createElement("td");
+  td.style.position = "relative";
+  //td.colSpan = colCount;
+
+  const label = document.createElement("span");
+  label.className = "ui left floating blue label";
+  label.textContent = `Week ${weekNum}`;
+
+  td.appendChild(label);
+  return td;
+}
+
+
+    
+    function generateProjectsSection() {
+      if (!config || !config.assignments) return;
+
+      const projectsContainer = document.getElementById('projects-cards');
+      if (!projectsContainer) return;
+
+      projectsContainer.innerHTML = config.assignments.map(project => `
+        <div class="ui fluid card">
+          <div class="content">
+            <div class="header">
+              <i class="${project.icon || 'code'} icon"></i>
+              ${project.name}: ${project.title || project.name}
+            </div>
+          </div>
+          <div class="content">
+            <div class="ui red label">
+              <i class="calendar icon"></i>
+              Due: ${project.dueDate || 'TBD'}
+            </div>
+          </div>
+          <div class="extra content">
+            <a class="ui blue button" href="${project.url}" target="_blank">
+              <i class="external alternate icon"></i>
+              Project Spec
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function generateAnnouncements() {
+      if (!config || !config.announcements) return;
+
+      const announcementContainer = document.querySelector('.ui.feed');
+      if (!announcementContainer) return;
+
+      // Filter active announcements and generate HTML
+      const activeAnnouncements = config.announcements.filter(announcement => announcement.active);
+      
+      if (activeAnnouncements.length === 0) {
+        announcementContainer.innerHTML = '<div class="event"><div class="content"><div class="summary">No announcements at this time.</div></div></div>';
+        return;
+      }
+
+      announcementContainer.innerHTML = activeAnnouncements.map(a => {
+  const titleHTML = a.url
+    ? `
+       <a href="${a.url}" target="_blank">
+         <i class="arrow alternate circle right icon"></i>
+       </a>`
+    : a.title;
+
+  return `
+    <div class="event">
+      <div class="content">
+        <div class="summary">
+          ${titleHTML} ${a.message}
+          
+        </div>
+      </div>
+    </div>
+  `;
+}).join('');
+    }
+
+    function generatePeopleSection() {
+      if (!people) return;
+
+      // Generate faculty cards
+      const facultyContainer = document.getElementById('faculty-cards');
+      if (facultyContainer && people.faculty) {
+        facultyContainer.innerHTML = people.faculty.map(person => createPersonCard(person)).join('');
+      }
+
+      // Generate staff cards
+      const staffContainer = document.getElementById('staff-cards');
+      if (staffContainer && people.staff) {
+        staffContainer.innerHTML = people.staff.map(person => createPersonCard(person)).join('');
+      }
+    }
+
+    function createPersonCard(person) {
+      const platformIcons = person.platforms ? person.platforms.map(platform => {
+        const iconMap = {
+          'Windows': '<span data-tooltip="Windows"><i class="icon windows"></i></span>',
+          'Linux': '<span data-tooltip="Linux"><i class="icon linux"></i></span>',
+          'Mac': '<span data-tooltip="Mac"><i class="icon apple"></i></span>',
+          'MAC': '<span data-tooltip="MAC"><i class="icon apple"></i></span>',
+          'Vim': '<span data-tooltip="Vim"><i class="icon-vim"></i></span>',
+          'VS Code': '<span data-tooltip="VS Code"><i class="icon-vscode"></i></span>',
+          'Cloud Computing': '<span data-tooltip="Cloud Computing"><i class="icon cloud"></i></span>',
+          'Machine Learning': '<span data-tooltip="Machine Learning"><i class="icon computer"></i></span>'
+        };
+        return iconMap[platform] || `<span data-tooltip="${platform}"><i class="icon question"></i></span>`;
+      }).join('') : '';
+
+      const hobbyIcons = person.hobbies ? person.hobbies.map(hobby => {
+        /*const hobbyMap = {
+          'Badminton': '<span data-tooltip="Badminton"><em data-emoji="badminton"></em></span>',
+          'Gaming': '<span data-tooltip="Gaming"><em data-emoji="video_game"></em></span>',
+          'Running': '<span data-tooltip="Running"><em data-emoji="man_running"></em></span>',
+          'Tennis': '<span data-tooltip="Tennis"><em data-emoji="tennis"></em></span>',
+          'Coffee': '<span data-tooltip="Coffee"><em data-emoji="coffee"></em></span>',
+          'Donuts': '<span data-tooltip="Donuts"><em data-emoji="doughnut"></em></span>',
+          'Yoga': '<span data-tooltip="Yoga"><i class="spa icon"></i></span>',
+          'Baking': '<span data-tooltip="Baking"><em data-emoji="cookie"></em></span>',
+          'Volleyball': '<span data-tooltip="Volleyball"><i class="volleyball ball icon"></i></span>',
+          'Basketball': '<span data-tooltip="Basketball"><em data-emoji=":basketball:"></em></span>',
+          'Boba': '<span data-tooltip="Boba"><em data-emoji=":bubble_tea:"></em></span>',
+          'Reading': '<span data-tooltip="Reading"><em data-emoji="book"></em></span>',
+          'Swimming': '<span data-tooltip="Swimming"><i class="icon swimmer"></i></span>',
+          'Traveling': '<span data-tooltip="Traveling"><em data-emoji="airplane_departure"></em></span>',
+          'Mobile games': '<span data-tooltip="Mobile games"><em data-emoji="video_game"></em></span>'
+        };
+        return hobbyMap[hobby] || `<span data-tooltip="${hobby}"><i class="icon heart"></i></span>`;*/
+        return `<span data-tooltip="${hobby}"><em data-emoji="${hobby}"></em></span>`;
+      }).join('') : '';
+
+      const hometownIcon = person.hometown ? `<span data-tooltip="Hometown: ${person.hometown}"><i class="icon map pin"></i></span>` : '';
+
+      return `
+        <div class="ui fluid card">
+          <div class="image">
+            <img src="${person.image}" alt="${person.name} head shot" />
+          </div>
+          <div class="content">
+            <div class="header small">
+              ${person.name}
+            </div>
+            <div class="description">
+              <a class="email" href="mailto:${person.email}" target="_blank" data-tooltip="${person.email}"><i class="icon envelope"></i></a>
+              ${platformIcons}
+              ${hometownIcon}
+            </div>
+          </div>
+          <div class="content">
+            <div class="description">
+              ${hobbyIcons}
+            </div>
+          </div>
+        </div><!-- /fluid card -->`;
+    }
+
+    // Call this after DOM is loaded
+    document.addEventListener('DOMContentLoaded', updateConfigurableContent);
+  </script>
+
+</head>
+<!-- update -->
+
+<body>
+  <!-- Nav bar on left side -->
+  <div class="ui left vertical inverted sidebar menu labeled icon" style="background: #038b74;">
+
+    <!-- Logo and Course Title -->
+    <div class="item">
+      <a class="ui logo icon image tiny" href="./#">
+        <img src="assets/images/eecs270logo.png" alt="logo">
+      </a>
+      <br>
+      <br>
+      <a href="./#"><b>EECS 270</b></a>
+    </div>
+
+    <!-- Internal fragment links -->
+    <div class="item">
+      <div class="menu">
+        <!--<a class="item" href="#requests">
+          Requests
+        </a>-->
+       
+        <a class="item" href="#schedule">
+          Schedule
+        </a>
+        <a class="item" href="#assignments">
+          Assignments
+        </a>
+        <a class="item" href="#people">
+          People
+        </a>
+      </div>
+    </div><!-- /Internal links -->
+
+    <!-- Internal second-level links -->
+    <div class="item">
+      <div class="menu">
+        <a class="item" href="syllabus.html">
+          Syllabus
+        </a>
+      </div>
+    </div><!-- /Internal second-level links -->
+
+    <!-- External links -->
+
+    <div class="menu">
+       <a id="sidebar-admin-requests-modal-button" class="item">
+          <i class="ui big green question circle icon"></i>
+          Admin Requests
+          </a>
+      <!-- https://eecsoh.efeakinci.com/queues/eecs-489-bbb-office-hours-->
+      <a class="item" href="https://oh.eecs.umich.edu/courses/eecs270" target="_blank" data-config="officeHours">
+        <i class="ui help circle icon big"></i>
+        Office Hours
+      </a>
+      <a class="item" href="https://piazza.com/class/mjyespstmmd17e/" target="_blank" data-config="qAndA">
+        <i class="ui big icon icon-piazza"></i>
+        Q&A Forum
+      </a>
+      <!-- <div data-tooltip="Next week!" class="disable item" href="https://eecsoh.eecs.umich.edu" target="_blank"> -->
+      <a class="item" data-tooltip="Umich login!"
+        href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link" target="_blank" data-config="files">
+        <i class="ui big icon google drive"></i>
+        Files
+      </a>
+      <a class="item" href="https://autograder.io/web/course/335" target="_blank" data-config="autograder">
+        <i class="ui big icon icon-gradescope"></i>
+        Autograder
+      </a>
+      <a class="item" href="https://umich.instructure.com/courses/787344" target="_blank" data-config="canvas">
+        <i class="ui big icon icon-canvas"></i>
+        Canvas
+      </a>
+    </div><!-- /External links -->
+  </div><!-- /Nav bar -->
+
+
+  <!-- Main page  -->
+  <div class="pusher">
+    <div class="ui text container">
+      <button class="ui right floated icon button" id="left-sidebar-toggle">
+        <i class="bars icon"></i>
+      </button>
+
+
+      <!-- Header and description -->
+      <h1>EECS 270: Introduction to Logic Design</h1>
+      <div class="inline">
+        <i>The University of Michigan</i>
+        <div class="ui blue label" id="semester-label"></div>
+
+        <!-- Example labels for current term COPY THESE, DO NOT REMOVE
+        <div class="ui blue label">Winter 2021</div>
+        <div class="ui brown label">Fall 2021</div>
+        <div class="ui olive label">Spring 2021</div>
+        -->
+
+        <!-- Example nav links to future terms COPY THESE, DO NOT REMOVE
+        <a class="ui basic blue left pointing label" href="w22">Looking for Winter 2022?</a>
+        <a class="ui basic olive left pointing label" href="sp22">Looking for Spring 2022?</a>
+        <a class="ui basic brown left pointing label" href="f22">Looking for Fall 2022?</a>
+        -->
+
+        <!-- Permanent link to course archive -->
+        <!-- <a class="ui basic secondary left pointing label" href="archive/">Looking for previous terms?</a> -->
+      </div>
+      <br />
+      <p>
+        Introduction to digital logic design and computer organization. Topics include Boolean algebra, 
+        digital design techniques, logic gates, logic and state minimization, standard combinational 
+        circuits, latches and flip-flops, sequential circuits, synthesis of synchronous sequential circuits,
+         state machines, FPGAs, memories, arithmetic circuits, and computer-aided design. 
+         Laboratory involves CAD-based design implemented on a FPGA including elementary interfacing.
+        <a href="syllabus.html">
+          <i class="arrow alternate circle right outline icon"></i>
+          Syllabus
+        </a>
+      </p>
+
+      <!-- Announcements -->
+      <!--<div class="ui info message">
+        <div class="header">
+          Final Exam and Review Session
+        </div>
+        <p>
+          The final exam is on <b>Monday, April 24 at 10:30am</b>.  More info on <a href="https://piazza.com/class/lbnv6k5pd0y6bz/post/4058" target="_blank">Piazza</a>.
+        </p>
+        <p>
+          There will be an exam review session on <b>Saturday, April 22 at 4:30pm</b>. More info on
+          <a href="https://piazza.com/class/lbnv6k5pd0y6bz/post/4058" target="_blank">
+            Piazza
+          </a>.
+          <a class="ui label" href="https://umich.zoom.us/j/95745904413" target="_blank">
+            <i class="video icon"></i>
+            Zoom
+          </a>
+          <a class="ui label" data-tooltip="Umich login!" href="https://docs.google.com/document/d/1_msBLzSQ7VcnRj0zMfD61SnEkfpNtOXUCu93yA2fhJk/edit?usp=sharing" target="_blank">
+            <i class="file alternate icon"></i>
+            Worksheet
+          </a>
+          <a class="ui label" data-tooltip="Umich login!" href="https://umich.zoom.us/rec/share/vXoVuJpi-HQ1NdTJnQLn9Y42O1S6Wz90IXOHA6eDChNHz3xiWBLjPqnFecLjreN6.2527GdYMvWz2LrqN" target="_blank">
+            <i class="play icon"></i>
+            Recording
+          </a>
+        </p>
+      </div>-->
+
+      <!-- Template announcement LEAVE ME HERE -->
+      <!--
+      <div class="ui info message">
+        <div class="header">
+          FIXME title
+        </div>
+        <p>
+          FIXME content
+        </p>
+      </div>
+      -->
+      <!-- <div class="ui info message">
+        <div class="header">
+              Announcements
+        </div>
+  </div> -->
+
+      <!-- This Week -->
+      <!--<h2 id="thisweek">This Week</h2>-->
+      <div class="ui three stackable cards">
+        <div class="ui card">
+          <div class="content" style="flex-grow: 0;">
+            <div class="header">Announcements</div>
+          </div>
+          <div class="content">
+            <div class="ui feed">
+              <!-- Announcements will be generated dynamically from config.json -->
+            </div>
+          </div>
+        </div>
+        <!-- / ui card -->
+        <!--<div id="assignments" class="ui card">
+          <div class="content" style="flex-grow: 0; padding-bottom: 0.5em;">
+            <div class="header" style=" font-size: 14pt;">Assignments</div>
+          </div>
+
+          <div class="content" style="flex-grow: 0;">
+            <div class="ui feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    Assignment 4: Static Router
+                    <br />
+                    <span class="ui red text" style="font-size: 9pt;">
+                      Due Fri, Dec 06 at 11:59pm
+                    </span>
+                  </div>
+                  
+                  <div style="margin-top: 0.4em;">
+                    <a class="ui icon label" href="https://github.com/eecs489staff/a4-static-router" target="_blank">
+                      <i class="file alternate outline icon"></i>
+                      Project Spec
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+
+        <div class="ui card">
+          <div class="content" style="flex-grow: 0;">
+            <div class="header">Recordings</div>
+          </div>
+          <div class="content">
+            <div class="ui feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lectures  
+                    <a class="ui icon label" data-tooltip="Recordings"
+                      href="https://leccap.engin.umich.edu/leccap/site/6vnpljzr0jn4thae3ma" target="_blank" data-config="lectureRecordings">
+                      <i class="play icon"></i>
+                    </a>
+                    <a class="ui icon label" data-tooltip="Lecture slides (Umich login!)"
+                      href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link" target="_blank" data-config="lectureSlides">
+                      <i class="file pdf icon"></i>
+                    </a>
+
+                  </div>
+                  
+                </div>
+              </div><!-- / event -->
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Labs 
+                    <!--<a class="ui icon label" data-tooltip="Recordings"
+                      href="https://leccap.engin.umich.edu/leccap/site/2tj78l6fu28b82cep2n" target="_blank">
+                      <i class="play icon"></i>
+                    </a>-->
+                    <a class="ui icon label" data-tooltip="Lab slides (Umich login!)"
+                      href="https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link" target="_blank" data-config="labSlides">
+                      <i class="file pdf icon"></i>
+                    </a>
+
+                  </div>
+                  
+                </div>
+              </div><!-- / event -->
+              <!--<div class="event">
+                <div class="content">
+                  <div class="summary">
+                    Notes
+                    <a class="ui icon label" data-tooltip="Lecture notes" href="https://eecs280staff.github.io/notes/" target="_blank">
+                      <i class="book icon"></i>
+                    </a>
+                  </div>
+                </div>
+              </div> / event -->
+
+            </div>
+          </div>
+        </div><!-- / ui card -->
+
+      </div><!-- /ui three cards -->
+      <div class="ui section hidden divider"></div>
+
+
+      <div id="admin-requests-modal" class="ui modal">
+        <div class="header">
+          Administrative Requests
+        </div>
+        <div class="content">
+          <div class="ui relaxed divided list">
+            <!-- <div class="item">
+              <i class="large clipboard list middle aligned icon"></i>
+              <div class="content">
+                <a class="header" target="_blank" href="">
+                  Lab Conflict
+                </a>
+                <div class="description">Let us know if you have a conflict with your assigned lab section</div>
+              </div>
+            </div> -->
+            <div class="item">
+              <i class="large clipboard list middle aligned icon"></i>
+              <div class="content">
+                <a class="header" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScH3Y1NivaqrrChaOD5ataltFejKfjmqz0hm9x0JDGYI1i-yw/viewform">
+                  Exam 1 Conflict
+                </a>
+                <div class="description">Report a conflict and request a alternate scheduling for the first Exam</div>
+              </div>
+            </div>
+            <div class="item">
+              <i class="large clipboard list middle aligned icon"></i>
+              <div class="content">
+                <a class="header" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfkVQ7GEjlCpK9zHwolTfjKEifQscgI9jUuiDtEprUJRKKgdQ/viewform">
+                  Exam 2 Conflict
+                </a>
+                <div class="description">Report a conflict and request a alternate scheduling for the Second Exam</div>
+              </div>
+            </div>
+            
+          </div>
+
+          <p>If there's something not on these forms, you can reach us at <a href="mailto:eecs270admin@umich.edu">eecs270admin@umich.edu</a>.</p>
+        </div>
+      </div>
+
+
+      <div class="ui hidden divider"></div>
+
+
+
+
+
+      <!-- Calendar
+
+           The FullCalendar JS library inserts a Google Calendar here.  See
+           the JavaScript source code at the end of this file.  Remember to
+           update the 'googleCalendarId' found in the JavaScript code.
+      -->
+      <div id="calendar"></div>
+      <p>
+        <i class="sticky note icon"></i>
+        <a href="https://calendar.google.com/calendar/embed?src=c_7fd9d54382ebcdecf0b298997b09c744860106d6ac9a193115b5774601e1357c%40group.calendar.google.com&ctz=America%2FNew_York"
+          target="_blank">Open in Google Calendar</a>
+      </p>
+      <div class="ui hidden divider"></div>
+
+
+      <!-- <h2 id="requests">Administrative Requests</h2>
+      <p>If there's something not on these forms, you can reach us at <a href="mailto:eecs280admin@umich.edu">eecs280admin@umich.edu</a>.</p>
+      <div class="ui styled fluid accordion">
+
+        <div class="active title">
+          <i class="dropdown icon"></i>
+          Quick Links
+        </div>
+        <div class="active content">
+          <div class="ui three stackable cards">
+
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLSet3xs3f4JTC32a37jmbPkeXLAjdX-KhQZqOd3NzGsQevh7EA/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  <span>
+                    Extension
+                  </span>
+                </div>
+                <div class="description">
+                  <p>Assignment extension</p>
+                </div>
+              </div>
+            </a> -->
+
+      <!--
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLSc7rdjO_y4ycg_vnJ3xzn2sgO54pRiBTKgYVQBGzve1ebQEyQ/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  <span>
+                    Late Add
+                  </span>
+                </div>
+                <div class="description">
+                  <p>Assignment extension for a late course add</p>
+                </div>
+              </div>
+            </a>
+            
+
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLScusVeKRNBPq3Mo7VIrYfmWtR0j2qsHaPaF1dEybdnxsYGNmg/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  <span>
+                    Lab Drop
+                  </span>
+                </div>
+                <div class="description">
+                  <p>Additional lab drop</p>
+                </div>
+              </div>
+            </a>
+          </div><!-- /ui three stackable cards 
+        </div>--><!-- /Quick Links -->
+
+      <!--<div class="title">
+          <i class="dropdown icon"></i>
+          Exam requests
+        </div>
+        <div class="content">
+          <div class="ui three stackable cards">
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLSc206EbrFkkXlrgiN5Z-I-BYwIya_6H6KGMpmOl1RkmlzcspA/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  Accommodation
+                </div>
+                <div class="description">
+                  <p>Request extended time or other exam accommodation</p>
+                </div>
+              </div>
+            </a>
+
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLSeK_x4Kor2hDUoq6gLt1KyqKG8cw2jLmniYpuvMNc7QoFEF9A/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  <span>
+                    Alternate Midterm
+                  </span>
+                </div>
+                <div class="description">
+                  <p>Report an exam conflict</p>
+                </div>
+              </div>
+            </a>
+
+            <a class="ui raised card" href="https://docs.google.com/forms/d/e/1FAIpQLSdxiTf97012o-fT-cAY4QmCCSIyfsscXpWgCVl_hm9DG5tHkA/viewform?usp=sf_link" target="_blank">
+              <div class="content">
+                <div class="header">
+                  <span>
+                    Alternate Final
+                  </span>
+                </div>
+                <div class="description">
+                  <p>Report an exam conflict</p>
+                </div>
+              </div>
+            </a>
+
+          </div> 
+        </div>
+      </div> /ui styled fluid accordion -->
+      <div class="ui hidden divider"></div>
+
+    <!-- Schedule section -->  
+    <h2>
+        Schedule
+        
+      </h2>
+      <div id="schedule_new"></div>
+    
+ 
+
+    
+      <!-- Projects section -->
+      <h2 id="assignments">
+        Assignments
+      </h2>
+      <div class="ui three stackable cards" id="projects-cards">
+        <!-- Project cards will be generated dynamically from config.json -->
+      </div>
+      <div class="ui hidden divider"></div>
+
+      <!-- People section -->
+      <h2 id="people">People</h2>
+      <div class="ui hidden divider"></div>
+      <h3>Faculty</h3>
+      <div class="ui two stackable cards" id="faculty-cards">
+        <!-- Faculty cards will be generated dynamically from people.json -->
+      </div><!-- /ui stackable cards -->
+
+      <h3>Staff</h3>
+      <div class="ui three stackable cards" id="staff-cards">
+        <!-- Staff cards will be generated dynamically from people.json -->
+
+      </div><!-- /ui stackable cards -->
+      <div class="ui hidden divider"></div>
+    </div><!-- /ui text container -->
+  </div><!-- /pusher -->
+
+  <!-- Footer -->
+  <footer class="ui vertical footer segment">
+  </footer>
+
+
+  <script>
+    // Sidebar show and hide logic.
+    //
+    // On large screens, show the sidebar by default.  On small screens, hide it.
+    (function () {
+      renderSidebar();
+    })();
+
+    function isSmallScreen() {
+      return screen.width < 900;
+    }
+
+    function renderSidebar() {
+      $sidebar = $('.ui.sidebar');
+      $sidebar.sidebar({
+        dimPage: false,
+        transition: 'overlay',
+        mobileTransition: 'overlay',
+        exclusive: false,
+        closable: false
+      });
+      $sidebar.sidebar('attach events', '#left-sidebar-toggle');
+      if (!isSmallScreen()) {
+        $sidebar.sidebar('toggle');
+      }
+    }
+  </script>
+
+  <script>
+    // Accordion show/hide initialization
+    // https://fomantic-ui.com/modules/accordion.html#initializing-an-accordion
+    // https://fomantic-ui.com/modules/accordion.html#/settings
+    $('.ui.accordion')
+      .accordion({
+        exclusive: false,
+      })
+      ;
+    $(() => {
+      $("#admin-requests-modal-button")
+        .add("#sidebar-admin-requests-modal-button")
+        .add("#resources-admin-requests-modal-button")
+        .on("click", () => {
+          $('#admin-requests-modal').modal('show');
+        });
+        
+      $("#office-hours-schedule-modal-button").on("click", () => {
+        $('#office-hours-schedule-modal').modal('show');
+      });
+    });
+  </script>
+
+  <script>
+    // Insert Google Calendar in <div id="calendar">
+    //
+    // Configuration now loaded from config.json
+    //
+    // Uses the FullCalendar library and connects to Google Calendar
+    // https://fullcalendar.io/docs
+    // https://fullcalendar.io/docs/google-calendar
+    
+    function initializeCalendar() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        // Google Calendar API, DO NOT CHANGE
+        // https://fullcalendar.io/docs/google-calendar
+        googleCalendarApiKey: 'AIzaSyAiEWXOLNCeznI7k6r0-taknkWGh0rcRwU',
+
+        // Google Calendar ID loaded from config.json
+        events: {
+          googleCalendarId: config?.calendar?.googleCalendarId || 'c_7fd9d54382ebcdecf0b298997b09c744860106d6ac9a193115b5774601e1357c@group.calendar.google.com',
+        },
+
+        // Custom buttons to switch between office hours and lab calendars.
+        // We need these to define custom click callbacks to force event hiding.
+        // https://fullcalendar.io/docs/customButtons
+        customButtons: {
+          toggleOH: {
+            text: 'OH',
+            click: function () {
+              calendar.changeView('_');
+              calendar.changeView(isSmallScreen() ? 'timeGridOHDay' : 'timeGridOHWeek');
+            }
+          },
+          toggleLecture: {
+            text: 'Lecture',
+            click: function () {
+              calendar.changeView('_');
+              calendar.changeView(isSmallScreen() ? 'timeGridLectureDay' : 'timeGridLectureWeek');
+            }
+          },
+          toggleLabs: {
+            text: 'Lab',
+            click: function () {
+              calendar.changeView('_');
+              calendar.changeView(isSmallScreen() ? 'timeGridLabsDay' : 'timeGridLabsWeek');
+            }
+          },
+          toggleAll: {
+            text: 'All',
+            click: function () {
+              calendar.changeView('_');
+              calendar.changeView(isSmallScreen() ? 'timeGridDay' : 'timeGridWeek');
+            }
+          }
+        },
+
+        // Tool bar options.  Hide "today" button on mobile to save space.
+        // https://fullcalendar.io/docs/headerToolbar
+        headerToolbar: {
+          start: 'toggleAll,toggleOH,toggleLecture,toggleLabs',
+          end: isSmallScreen() ? 'prev,next' : 'today prev,next',
+        },
+
+        // Custom views to switch between office hours and lab calendars.
+        // There are six, since we want different sizing for small screens.
+        // https://fullcalendar.io/docs/custom-view-with-settings
+        views: {
+          timeGridOHWeek: {
+            type: 'timeGridWeek',
+          },
+
+          timeGridOHDay: {
+            type: 'timeGridDay',
+          },
+
+          timeGridLectureWeek: {
+            type: 'timeGridWeek',
+          },
+
+          timeGridLectureDay: {
+            type: 'timeGridDay',
+          },
+
+          timeGridLabsWeek: {
+            type: 'timeGridWeek',
+          },
+
+          timeGridLabsDay: {
+            type: 'timeGridDay',
+          },
+
+          // Dummy view to force remounting on view change
+          // Workaround for: https://github.com/fullcalendar/fullcalendar/issues/5543
+          _: {
+            type: 'list'
+          }
+        },
+
+        // View options
+        // https://fullcalendar.io/docs/timegrid-view
+        initialView: isSmallScreen() ? 'timeGridDay' : 'timeGridWeek',
+        allDaySlot: true,
+        allDayText: '',
+        nowIndicator: true,
+        weekends: true,
+
+        // Don't scroll, just show everything
+        slotMinTime: '08:00:00',
+        slotMaxTime: '21:00:00',
+        height: 'auto',
+
+        // Selectively recolor and hide calendar events
+        // https://fullcalendar.io/docs/event-render-hooks
+        eventContent: setupEvent,
+
+        // Add click-for-popup to calendar events
+        // https://fullcalendar.io/docs/event-render-hooks
+        eventDidMount: addPopup,
+
+        // Prepare calendar events for a view change
+        // This function runs every time the view switches
+        // https://fullcalendar.io/docs/view-render-hooks
+        viewDidMount: changeEventView,
+
+        // Improve mobile viewing with different shape
+        aspectRatio: isSmallScreen() ? .75 : 1.35,
+      });
+      calendar.render();
+
+      // Add label before buttons (But not on small screens because there isn't enough room)
+      if (!isSmallScreen()) {
+        $('.fc-toggleOH-button').parent().before('<div style="display: inline; vertical-align: middle;">Show:</div>');
+      }
+    }
+
+    // Initialize calendar when DOM is loaded and config is available
+    document.addEventListener('DOMContentLoaded', function() {
+      // Wait for config to load, then initialize calendar
+      const checkConfig = () => {
+        if (config) {
+          initializeCalendar();
+        } else {
+          setTimeout(checkConfig, 100);
+        }
+      };
+      checkConfig();
+    });
+
+    function setupEvent(arg) {
+      // Remove events that are not in the current view and recolor if needed
+      if (filterEvent(arg)) {
+        recolorCalendarEvent(arg);
+      }
+    }
+
+    function changeEventView(arg) {
+      // Reset all events to 'display:auto' when the view changes.
+      // Change the opacity of the buttons to indicate selection.
+      var events = arg.view.calendar.getEvents();
+      events.forEach(function (e) {
+        e.setProp('display', 'auto');
+      });
+
+      var view = arg.view.type;
+      if (view.toLowerCase().includes('oh')) {
+        $('.fc-toggleOH-button').css('opacity', '1');
+        $('.fc-toggleLecture-button').css('opacity', '0.65');
+        $('.fc-toggleLabs-button').css('opacity', '0.65');
+        $('.fc-toggleAll-button').css('opacity', '0.65');
+      }
+      else if (view.toLowerCase().includes('lecture')) {
+        $('.fc-toggleOH-button').css('opacity', '0.65');
+        $('.fc-toggleLecture-button').css('opacity', '1');
+        $('.fc-toggleLabs-button').css('opacity', '0.65');
+        $('.fc-toggleAll-button').css('opacity', '0.65');
+      }
+      else if (view.toLowerCase().includes('labs')) {
+        $('.fc-toggleOH-button').css('opacity', '0.65');
+        $('.fc-toggleLecture-button').css('opacity', '0.65');
+        $('.fc-toggleLabs-button').css('opacity', '1');
+        $('.fc-toggleAll-button').css('opacity', '0.65');
+      }
+      else {
+        $('.fc-toggleOH-button').css('opacity', '0.65');
+        $('.fc-toggleLecture-button').css('opacity', '0.65');
+        $('.fc-toggleLabs-button').css('opacity', '0.65');
+        $('.fc-toggleAll-button').css('opacity', '1');
+      }
+    }
+
+    function filterEvent(arg) {
+      // Filter events by type, return true/false to avoid recoloring invisible events
+      //
+      // arg.event has property 'display' that allows hiding specific events
+      var view = arg.view.type;
+      var title = arg.event.title;
+      if (view.toLowerCase().includes('oh')) {
+        if (!(title.toLowerCase().includes('office hours') || title.toLowerCase().includes('oh'))) {
+          arg.event.setProp('display', 'none');
+          return false;
+        }
+      }
+      else if (view.toLowerCase().includes('labs')) {
+        if (!title.toLowerCase().includes('lab')) {
+          arg.event.setProp('display', 'none');
+          return false;
+        }
+      }
+      else if (view.toLowerCase().includes('lecture')) {
+        if (!title.toLowerCase().includes('lecture')) {
+          arg.event.setProp('display', 'none');
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function recolorCalendarEvent(arg) {
+      // Change calendar event colors based on string prefix
+      if (
+        arg.event.title.toLowerCase().includes('due') ||
+        arg.event.title.toLowerCase().includes('deadline') ||
+        arg.event.title.toLowerCase().includes('exam')
+      ) {
+        arg.backgroundColor = '#D39E00';
+        arg.borderColor = '#D39E00';
+      }
+      else if (arg.event.title.toLowerCase().includes('lecture')) {
+        arg.backgroundColor = '#3D5B9A';
+        arg.borderColor = '#3D5B9A';
+      }
+      else if (arg.event.title.toLowerCase().includes('lab')) {
+        arg.backgroundColor = '#3A87AD';
+        arg.borderColor = '#3A87AD';
+      }
+      else if (arg.event.title.toLowerCase().includes('proffice hours')) {
+        arg.backgroundColor = '#428BCA';
+        arg.borderColor = '#428BCA';
+      }
+      else if (
+        arg.event.title.toLowerCase().includes('office hours') ||
+        arg.event.title.includes('OH') // case-sensitive
+      ) {
+        arg.backgroundColor = '#BBDEFB';
+        arg.borderColor = '#BBDEFB';
+        arg.textColor = '#424242';
+      }
+    }
+
+    function addPopup(arg) {
+      // Add a popup to a calendar event
+      //
+      // arg.event.extendedProps contains extra information from the Google
+      // Calendar event, e.g., description and location.
+      var element = arg.el;
+      var location = arg.event.extendedProps.location || '';
+      var description = arg.event.extendedProps.description || '';
+
+      // Remove link to Google Calendar automatically added by FullCalendar
+      $(element).removeAttr('href');
+
+      // Add Popup to DOM, links in the location field are clickable
+      // https://semantic-ui.com/modules/popup.html#/usage
+      //
+      // NOTE: overflow:scroll avoids text spilling out of the popup on iOS.
+      if (location.toLowerCase().startsWith('http')) {
+        var location_html = `<a href="${location}" target="_blank">${location}</a>`;
+      } else {
+        var location_html = `${location}<br>${description}`;
+      }
+      $(element).popup({
+        on: 'click',
+
+        // Prevent popups from getting destroyed when view changes
+        // https://fomantic-ui.com/modules/popup.html#/settings
+        observeChanges: false,
+
+        html: `
+         <div class="header">${arg.event.title}</div>
+         <div class="content" style="overflow:auto">${location_html}</div>
+       `,
+      });
+    }
+  </script>
+
+</body>
+
+</html>
+
+
+
