@@ -322,3 +322,8 @@ th {
   .two-col, .people-grid, .cards-2, .cards-3 { grid-template-columns: 1fr; }
   .hero { padding: 1.4rem; }
 }
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+  width: 18%;
+  white-space: nowrap;
+}

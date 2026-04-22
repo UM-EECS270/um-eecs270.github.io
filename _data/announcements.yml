@@ -1,54 +1,54 @@
 items:
 - title: Project 0 has been posted!
-  date: ''
+  date: '2026-04-25'
   body: Project 0 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-0-majority-tutorial
   active: false
 - title: Project 1 has been posted!
-  date: ''
+  date: '2026-05-06'
   body: Project 1 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-1-selector
   active: false
 - title: Please complete the Alternate Exam Request Form
-  date: ''
+  date: '2026-05-07'
   body: Please complete the Alternate Exam Request Form
   url: https://umich.instructure.com/courses/815882/pages/project-1-selector
   active: false
 - title: Project 2 has been posted!
-  date: ''
+  date: '2026-05-09'
   body: Project 2 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-2-robot-control
   active: false
 - title: Project 3 has been posted!
-  date: ''
+  date: '2026-05-14'
   body: Project 3 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-3-combinational-calculator
   active: false
 - title: Exam 1 Logistics and Prep!
-  date: ''
+  date: '2026-05-14'
   body: Exam 1 Logistics and Prep!
   url: https://umich.instructure.com/courses/815882/discussion_topics/2834909
   active: false
-- title: Project 4 - Due Wednesday Feb 25
-  date: ''
-  body: Project 4 - Due Wednesday Feb 25
+- title: Project 4 - Due May 28
+  date: '2026-05-14'
+  body: Project 4 - Due May 28
   url: https://umich.instructure.com/courses/815882/pages/project-4-timing-and-delay
   active: false
-- title: Project 5 - Due Wednesday March 11
-  date: ''
-  body: Project 5 - Due Wednesday March 11
+- title: Project 5 - Due Wednesday June 2
+  date: '2026-05-28'
+  body: Project 5 - Due Wednesday June 2
   url: https://umich.instructure.com/courses/815882/pages/project-5-up-down-counter
   active: false
 - title: Project 6 has been posted!
-  date: ''
+  date: '2026-06-02'
   body: Project 6 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-6-traffic-light-controller
   active: false
-- title: Project 7 released! Checkpoint due April 10
-  date: ''
-  body: Project 7 released! Checkpoint due April 10
+- title: Project 7 released! Checkpoint due June 17
+  date: '2026-06-11'
+  body: Project 7 released! Checkpoint due June 17
   url: https://umich.instructure.com/courses/815882/pages/project-7-sequential-calculator
-  active: true
+  active: false
 - title: Exam Room Assignments
   date: ''
   body: Exam Room Assignments

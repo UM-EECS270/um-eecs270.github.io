@@ -13,8 +13,8 @@ secondary:
 - label: Office Hours
   url: https://oh.eecs.umich.edu/courses/eecs270
   external: true
-- label: Q&A Forum
-  url: https://piazza.com/umich/winter2026/eecs270wn2026/home
+- label: Piazza
+  url: https://piazza.com/umich/summer2026/eecs270100sp2026
   external: true
 - label: Files
   url: https://drive.google.com/drive/folders/1o94vkaVMNm4PSu6p68U7ZNaXem0zifLs?usp=drive_link
@@ -23,5 +23,5 @@ secondary:
   url: https://autograder.io/web/course/375
   external: true
 - label: Canvas
-  url: https://umich.instructure.com/courses/815882
+  url: https://umich.instructure.com/courses/838166
   external: true

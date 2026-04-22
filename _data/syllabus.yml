@@ -5,20 +5,23 @@ intro_markdown: 'EECS 270 introduces you to the exciting world of digital logic 
 sections:
 - id: attendance-policy
   title: Attendance Policy
-  markdown: In-person attendance is **required**. Lectures will be automatically recorded but should not be used as a substitute for lecture attendance.  Lectures cannot be attended remotely via Zoom. **Lab sessions require attendance, and labs are graded**. Please ensure that you attend the section for which you are registered.
+  markdown: In-person attendance is **highly encouraged**. 
+    If you must miss class for any reason, recordings of the lectures can be accessed through this link no later than a few hours after the lecture. Lectures cannot be attended remotely via Zoom.  
+    
+    **Lab sessions require attendance, and labs are graded**. 
   open: true
 - id: course-topics
   title: Course Topics
   open: true
   bullet_items:
   - Bits Everywhere!
-  - Timing and Delay
-  - Boolean Algebra
   - Switching Functions
+  - Boolean Algebra
   - Positive Binary Numbers
   - Binary Arithmetic
   - Combinational Blocks
   - Latches and Flip-Flops
+  - Timing and Delay
   - Sequential Circuit Analysis
   - Sequential Circuit Design
   - Two Level Logic Minimization

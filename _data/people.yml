@@ -1,54 +1,19 @@
 faculty:
-- name: Saquib Razak
+- name: Victor Liu
   role: Instructor
-  email: razak@umich.edu
-  image: assets/headshots/razak.jpg
+  email: vyl@umich.edu
+  image: assets/headshots/victor_liu.jpg
   platforms:
   - Windows
   - Linux
   - Vim
   - VS Code
   hobbies:
-  - tennis
+  - swimming
   - man_running
+  - man_skiing
   - coffee
-  - doughnut
 staff:
-- name: James Carl
-  role: Staff
-  email: jmscarl@umich.edu
-  image: assets/headshots/james.png
-  platforms:
-  - Windows
-  - Linux
-  hobbies:
-  - checkered_flag
-  - sail_boat
-  - skier
-- name: Michael Capitani
-  role: Staff
-  email: mcap@umich.edu
-  image: assets/headshots/capitani.jpg
-  platforms:
-  - Mac
-  - Linux
-  - VS Code
-  hobbies:
-  - bento
-  - golf
-  - hockey
-- name: Dhruv Dighrasker
-  role: Staff
-  email: dhruvdi@umich.edu
-  image: assets/headshots/dhruv.jpeg
-  platforms:
-  - Mac
-  - Linux
-  - VS Code
-  hobbies:
-  - man_running
-  - movie_camera
-  - ping_pong
 - name: Jacob Flom
   role: Staff
   email: jsflom@umich.edu
@@ -73,78 +38,3 @@ staff:
   - books
   - man_dancing
   - cook
-- name: Luke Nelson
-  role: Staff
-  email: lukenels@umich.edu
-  image: assets/headshots/luke.jpg
-  platforms:
-  - Mac
-  - Windows
-  - Linux
-  - Vim
-  hobbies:
-  - basketball
-  - cactus
-  - book
-- name: Tanay Sharma
-  role: Staff
-  email: tanays@umich.edu
-  image: assets/headshots/tanay.jpg
-  platforms:
-  - Windows
-  - Linux
-  - VS Code
-  hobbies:
-  - ping_pong
-  - cooking
-  - guitar
-- name: Jacob Tkaczyk
-  role: Staff
-  email: tkaczykj@umich.edu
-  image: assets/headshots/jacob.jpg
-  platforms:
-  - Windows
-  - Linux
-  - VS Code
-  hobbies:
-  - man_lifting_weights
-  - poultry_leg
-  - airplane
-- name: Anthony Varkey
-  role: Staff
-  email: avarkey@umich.edu
-  image: assets/headshots/anthony.png
-  platforms:
-  - Windows
-  - Linux
-  - VS Code
-  hobbies:
-  - video_game
-  - badminton
-  - ping_pong
-- name: Jeffery Wu
-  role: Staff
-  email: wujeffer@umich.edu
-  image: assets/headshots/jeffery.png
-  platforms:
-  - Windows
-  - Linux
-  - VS Code
-  hobbies:
-  - basketball
-  - video_camera
-  - cat2
-  - dumpling
-  - guitar
-- name: Fa Yan
-  role: Staff
-  email: fahyen@umich.edu
-  image: assets/headshots/fa.jpg
-  platforms:
-  - Windows
-  - Linux
-  - VS Code
-  hobbies:
-  - computer
-  - chains
-  - chart_with_upwards_trend

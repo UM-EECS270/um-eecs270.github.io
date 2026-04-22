@@ -27,7 +27,7 @@ def fmt_date(date_text: str) -> str:
     if not date_text:
         return ''
     try:
-        return datetime.strptime(date_text, '%Y-%m-%d').strftime('%b %d').replace(' 0', ' ')
+        return datetime.strptime(date_text, '%Y-%m-%d').strftime('%a %b %d').replace(' 0', ' ')
     except ValueError:
         return date_text
 
