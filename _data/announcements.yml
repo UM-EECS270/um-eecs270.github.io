@@ -1,6 +1,11 @@
 items:
+- title: Syllabus is under construction!
+  date: ''
+  body: This syllabus is under construction!  The content and links are subject to change. 
+  url: https://um-eecs270.github.io
+  active: active
 - title: Project 0 has been posted!
-  date: '2026-04-25'
+  date: '2026-05-02'
   body: Project 0 has been posted!
   url: https://umich.instructure.com/courses/815882/pages/project-0-majority-tutorial
   active: false
