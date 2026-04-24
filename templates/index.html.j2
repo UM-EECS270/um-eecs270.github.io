@@ -12,7 +12,8 @@
 <body>
 <header class="site-header">
 <div class="wrap topbar">
-<div class="brand">{{ course.code }}: {{ course.title }} - {{ course.term }}</div>
+<div class="brand">{{ course.code }}: {{ course.title }}</div>
+<span>{{ course.term }}:{{ course.start }}-{{ course.end }}</span>
 <nav class="topnav" aria-label="Main navigation">
 {% for item in nav.primary %}<a href="{{ item.url }}">{{ item.label }}</a>
 {% endfor %}
@@ -21,21 +22,26 @@
 </div></header>
 <main class="wrap page-grid">
 <section class="hero">
-<!--div class="hero-topline">{{course.institution}}</div-->
+<!--
+<div class="hero-topline">{{course.institution}}</div>
+<-->
 <p class="dek">{{ course.description }}</p>
 <div class="meta">
 <span>Lectures: {{ course.lectures }}</span>
 <span>Labs: {{ course.labs }}</span>
+</div>
+<div class="meta">
 <span>Venue: {{ course.location }}</span>
-<span>{{ course.start }}-{{ course.end }}</span>
-<span><a href="mailto:{{ course.contact_email }}">{{ course.contact_email }}</a></span>
+<span>Contact: <a href="mailto:{{ course.contact_email }}">{{ course.contact_email }}</a></span>
 </div>
 <div class="utility-links">
+Links (need Login):
 {% for item in nav.secondary %}<a href="{{ item.url }}" {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>
 {% endfor %}
 </div>
 {% if course.hero_note %}<p class="hero-note">{{ course.hero_note }}</p>{% endif %}
 </section>
+
 
 <aside class="toc panel">
 <h2>On this page</h2>

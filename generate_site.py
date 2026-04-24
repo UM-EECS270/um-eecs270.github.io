@@ -62,7 +62,7 @@ def prepare_schedule(schedule: dict) -> dict:
 def prepare_announcements(ann: dict) -> list[dict]:
     items = ann.get('items', []) or []
     active = [a for a in items if a.get('active')]
-    return active if active else items[:3]
+    return active if active else items[:0]
 
 def main() -> None:
     course = load_yaml('course.yml')

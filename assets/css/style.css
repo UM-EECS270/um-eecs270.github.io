@@ -66,14 +66,14 @@ a:hover { text-decoration: underline; }
   margin-bottom: 1.5rem;
   padding: 2rem;
   border-radius: 28px;
-  color: white;
-  background: linear-gradient(135deg, var(--um-blue) 0%, var(--um-blue-2) 100%);
+  color: var(--um-blue) 100%;
+  background: lightgray;
   box-shadow: var(--shadow);
 }
 
 .hero-topline {
   font-size: 0.98rem;
-  color: rgba(255,255,255,0.9);
+  color: var(--um-blue) 100%;
   margin-bottom: 0.35rem;
 }
 
@@ -85,7 +85,7 @@ a:hover { text-decoration: underline; }
 
 .dek {
   max-width: 80ch;
-  color: rgba(255,255,255,0.94);
+  color: var(--um-blue) 100%;
 }
 
 .meta {
@@ -93,7 +93,7 @@ a:hover { text-decoration: underline; }
   flex-wrap: wrap;
   gap: 1rem;
   margin: 1rem 0 1rem;
-  color: rgba(255,255,255,0.9);
+  color: var(--um-blue) 100%;
 }
 
 .utility-links {
@@ -104,14 +104,14 @@ a:hover { text-decoration: underline; }
 }
 
 .utility-links a {
-  color: white;
+  color: var(--um-blue) 100%;
   font-weight: 700;
   border-bottom: 1px solid rgba(255,255,255,0.28);
 }
 
 .hero-note {
   margin: 0.25rem 0 0;
-  color: rgba(255,255,255,0.82);
+  color: var(--um-blue) 100%;
 }
 
 .panel {

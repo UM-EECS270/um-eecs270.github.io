@@ -1,9 +1,9 @@
 primary:
 - label: Schedule
   url: '#schedule'
-- label: Assignments
+- label: Projects
   url: '#assignments'
-- label: People
+- label: Instructors
   url: '#people'
 - label: Syllabus
   url: '#syllabus'
