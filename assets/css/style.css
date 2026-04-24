@@ -67,7 +67,7 @@ a:hover { text-decoration: underline; }
   padding: 2rem;
   border-radius: 28px;
   color: var(--um-blue) 100%;
-  background: lightgray;
+  background: lightgoldenrodyellow;
   box-shadow: var(--shadow);
 }
 
