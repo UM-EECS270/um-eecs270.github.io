@@ -12,19 +12,22 @@
 <body>
 <header class="site-header">
 <div class="wrap topbar">
-<div class="brand">{{ course.code }}</div>
+<div class="brand">{{ course.code }}: {{ course.title }} - {{ course.term }}</div>
 <nav class="topnav" aria-label="Main navigation">
 {% for item in nav.primary %}<a href="{{ item.url }}">{{ item.label }}</a>
 {% endfor %}
-</nav></div></header>
+</nav>
+<img src={{course.logo}} width="250" />  
+</div></header>
 <main class="wrap page-grid">
 <section class="hero">
-<div class="hero-topline">{{ course.institution }}</div>
-<h1>{{ course.code }}: {{ course.title }}</h1>
+<!--div class="hero-topline">{{course.institution}}</div-->
 <p class="dek">{{ course.description }}</p>
 <div class="meta">
-<span><strong>{{ course.term }}</strong></span>
-<span>{{ course.meetings }}</span>
+<span>Lectures: {{ course.lectures }}</span>
+<span>Labs: {{ course.labs }}</span>
+<span>Venue: {{ course.location }}</span>
+<span>{{ course.start }}-{{ course.end }}</span>
 <span><a href="mailto:{{ course.contact_email }}">{{ course.contact_email }}</a></span>
 </div>
 <div class="utility-links">
@@ -57,21 +60,6 @@
 {% endif %}
 </div></section>
 
-<section id="recordings-admin" class="panel toc-section">
-<h2>Recordings and Administrative Requests</h2>
-<div class="two-col">
-<div><h3>{{ resources.recordings.heading }}</h3><ul class="link-list">
-{% for item in resources.recordings['items'] %}<li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a></li>
-{% endfor %}
-</ul></div>
-<div><h3>{{ resources.admin_requests.heading }}</h3><ul class="request-list">
-{% for item in resources.admin_requests['items'] %}<li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a><span>{{ item.description }}</span></li>
-{% endfor %}
-</ul><p class="muted">If there is something not on these forms, contact <a href="mailto:{{ course.contact_email }}">{{ course.contact_email }}</a>.</p></div>
-</div>
-<p class="calendar-link"><a href="{{ resources.calendar.url }}" target="_blank" rel="noopener noreferrer">{{ resources.calendar.label }}</a></p>
-</section>
-
 <section id="schedule" class="panel toc-section">
 <h2>Schedule</h2>
 <div class="table-wrap"><table class="schedule-table">
@@ -97,7 +85,7 @@
 </section>
 
 <section id="assignments" class="panel toc-section">
-<h2>Assignments</h2>
+<h2>Projects</h2>
 <div class="cards-3">
 {% for item in assignments.cards %}
 <article class="card assignment-card">
@@ -111,11 +99,26 @@
 </div>
 </section>
 
+<section id="recordings-admin" class="panel toc-section">
+<h2>Logistics</h2>
+<div class="two-col">
+<div><h3>{{ resources.recordings.heading }}</h3><ul class="link-list">
+{% for item in resources.recordings['items'] %}<li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a></li>
+{% endfor %}
+</ul></div>
+<div><h3>{{ resources.admin_requests.heading }}</h3><ul class="request-list">
+{% for item in resources.admin_requests['items'] %}<li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a><span>{{ item.description }}</span></li>
+{% endfor %}
+</ul><p class="muted">If there is something not on these forms, contact <a href="mailto:{{ course.contact_email }}">{{ course.contact_email }}</a>.</p></div>
+</div>
+<p class="calendar-link"><a href="{{ resources.calendar.url }}" target="_blank" rel="noopener noreferrer">{{ resources.calendar.label }}</a></p>
+</section>
+
 <section id="people" class="panel toc-section">
-<h2>People</h2>
+<h2>Instructors</h2>
 <div class="people-grid-full">
 <div>
-<h3>Faculty</h3>
+<!--h3>Faculty</h3-->
 <div class="cards-2">
 {% for p in people.faculty %}
 <article class="card person-card">
@@ -137,17 +140,18 @@
 </div>
 </div>
 <div>
-<h3>Staff</h3>
-<div class="cards-3">
+<!--h3>Staff</h3-->
+<div class="cards-2">
 {% for p in people.staff %}
 <article class="card person-card">
 <div class="person-top compact">
-<div class="avatar-wrap small-avatar-wrap">
-{% if p.image %}<img class="avatar small-avatar" src="{{ p.image }}" alt="{{ p.name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">{% endif %}
-<div class="avatar-fallback small-avatar-fallback" {% if p.image %}style="display:none"{% endif %}>{{ p.initials }}</div>
+<div class="avatar-wrap avatar-wrap">
+{% if p.image %}<img class="avatar avatar" src="{{ p.image }}" alt="{{ p.name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">{% endif %}
+<div class="avatar-fallback avatar-fallback" {% if p.image %}style="display:none"{% endif %}>{{ p.initials }}</div>
 </div>
 <div>
 <h4>{{ p.name }}</h4>
+<p class="muted">{{ p.role }}</p>
 <p><a href="mailto:{{ p.email }}">{{ p.email }}</a></p>
 </div>
 </div>

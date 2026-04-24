@@ -15,9 +15,21 @@ faculty:
   - coffee
 staff:
 - name: Jacob Flom
-  role: Staff
+  role: Lab TA
   email: jsflom@umich.edu
   image: assets/headshots/flom.png
+  platforms:
+  - Mac
+  - Linux
+  - VS Code
+  hobbies:
+  - croissant
+  - black_nib
+  - airplane
+- name: TBD
+  role: Grader
+  email: TBD
+  image: assets/headshots/ANONYMOUS.jpg
   platforms:
   - Mac
   - Linux

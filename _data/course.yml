@@ -1,21 +1,21 @@
 code: EECS 270
 title: Introduction to Logic Design
+shorttitle: Logic Design
 institution: The University of Michigan
+logo: assets/headshots/EECS-informal.png
 term: Spring 2026
+start: May 5
+end: June 24
 location: 1003 EECS
-meetings: MTWH, 10:30am-12noon
+lectures: MoTuWeTh, 10:30am-12noon
+labs: TuTh, 12noon - 2pm
 contact_email: eecs270-s26@umich.edu
 description:  An introductory course on the digital logic design. 
   Topics include Boolean algebra, 
   combinational and sequential logic design, 
   finite state machines, 
   memories, and case studies. 
-  #computer arithmetic, 
-  #assembly language programming, 
-  #computer organization
-  #including processor design, 
-  #memory systems, and I/O. 
-  #Students gain hands-on experience
-  #with digital design tools and FPGA implementation.
-hero_note: Design methodology using hardware description languages 
+  Design methodology using hardware description languages 
   and modern CAD tools is covered in the lab portion of the course.
+
+hero_note: 
