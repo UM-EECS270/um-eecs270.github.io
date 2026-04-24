@@ -4,14 +4,14 @@ faculty:
   email: vyl@umich.edu
   image: assets/headshots/victor_liu.jpg
   platforms:
-  - Windows
   - Linux
   - Vim
+  - Emacs
   - VS Code
   hobbies:
   - swimming
-  - man_running
-  - man_skiing
+  - running
+  - skiing
   - coffee
 staff:
 - name: Jacob Flom
@@ -26,15 +26,3 @@ staff:
   - croissant
   - black_nib
   - airplane
-- name: Owen Hoffend
-  role: Staff
-  email: ohoffend@umich.edu
-  image: assets/headshots/owen.png
-  platforms:
-  - Mac
-  - Linux
-  - VS Code
-  hobbies:
-  - books
-  - man_dancing
-  - cook
